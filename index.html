@@ -151,6 +151,11 @@
     display:flex;align-items:center;justify-content:center;gap:9px;box-shadow:0 6px 18px rgba(79,140,255,.4);transition:all .15s;}
   .export-btn:hover{filter:brightness(1.08);transform:translateY(-1px);}
   .export-btn svg{width:17px;height:17px;}
+  .viewer-btn{width:100%;background:linear-gradient(145deg,#a06cff,#7a4ddb);border:none;color:#fff;
+    font-family:var(--sans);font-weight:700;font-size:13px;padding:12px;border-radius:11px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;gap:9px;box-shadow:0 6px 18px rgba(160,108,255,.38);transition:all .15s;}
+  .viewer-btn:hover{filter:brightness(1.08);transform:translateY(-1px);box-shadow:0 8px 22px rgba(160,108,255,.5);}
+  .viewer-btn svg{width:17px;height:17px;}
   .clear-link{background:none;border:none;color:var(--txt-faint);font-family:var(--sans);font-size:11.5px;cursor:pointer;text-decoration:underline;text-underline-offset:2px;}
   .clear-link:hover{color:var(--warn);}
 
@@ -249,6 +254,7 @@
       <div class="foot">
         <span class="count">PLACED ASSETS <b id="count">0</b></span>
         <button class="export-btn" id="exportBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> JSON 내보내기</button>
+        <button class="viewer-btn" id="viewerBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg> 3D 언리얼 뷰어 다운로드</button>
         <button class="clear-link" id="clearBtn">전체 비우기</button>
       </div>
     </aside>
@@ -422,6 +428,12 @@ document.getElementById('rotR').addEventListener('click', ()=>rotateBy(90));
 document.getElementById('rotSlider').addEventListener('input', e=>setRotation(parseInt(e.target.value,10)));
 document.getElementById('delBtn').addEventListener('click', deleteSelected);
 document.getElementById('clearBtn').addEventListener('click', ()=>{ items=[]; selectedId=null; render(); });
+
+/* ---- 3D Unreal viewer download (새 창으로 링크 열기) ---- */
+const VIEWER_URL = "https://drive.google.com/file/d/1S6SW3TevBU3wcZtpi5zGbYTSLwUtAvtC/view?usp=drive_link";   // TODO: 실제 다운로드 링크로 교체
+document.getElementById('viewerBtn').addEventListener('click', ()=>{
+  window.open(VIEWER_URL, '_blank', 'noopener,noreferrer');
+});
 
 /* ---- room info ---- */
 document.getElementById('rW').textContent = f(BOARD/PPM);
